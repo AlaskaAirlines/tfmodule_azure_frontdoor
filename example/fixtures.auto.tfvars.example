@@ -1,0 +1,315 @@
+tags = {
+  ApplicationName = ""
+  Contact         = ""
+  Environment     = ""
+  InUse           = ""
+  ProductName     = ""
+  Team            = ""
+}
+
+resource_group_name                          = ""
+frontdoor_name                               = ""
+frontdoor_friendly_name                      = ""
+enforce_backend_pools_certificate_name_check = ""
+load_balancer_enabled                        = ""
+
+routing_rules = {
+  rr1 = {
+    name               = ""
+    frontend_endpoints = []
+    accepted_protocols = []
+    patterns_to_match  = []
+    enabled            = ""
+    configuration      = ""
+  }
+}
+
+redirect_configurations = {}
+
+forwarding_configurations = {
+  fc1 = {
+    routing_rule_name                     = ""
+    backend_pool_name                     = ""
+    cache_enabled                         = ""
+    cache_use_dynamic_compression         = ""
+    cache_query_parameter_strip_directive = ""
+    custom_forwarding_path                = ""
+    forwarding_protocol                   = ""
+  },
+  fc2 = {
+    routing_rule_name                     = ""
+    backend_pool_name                     = ""
+    cache_enabled                         = ""
+    cache_use_dynamic_compression         = ""
+    cache_query_parameter_strip_directive = ""
+    custom_forwarding_path                = ""
+    forwarding_protocol                   = ""
+  }
+}
+
+backend_pool_load_balancing_configurations = {
+  lb1 = {
+    name                            = ""
+    sample_size                     = ""
+    successful_samples_required     = ""
+    additional_latency_milliseconds = ""
+  }
+}
+
+backend_pool_health_probe_configurations = {
+  hp1 = {
+    name                = ""
+    path                = ""
+    protocol            = ""
+    interval_in_seconds = ""
+  }
+}
+
+backend_pools = {
+  bp1 = {
+    name                = ""
+    load_balancing_name = ""
+    health_probe_name   = ""
+    backends = {
+      be1 = {
+        enabled     = ""
+        address     = ""
+        host_header = ""
+        http_port   = ""
+        https_port  = ""
+        priority    = ""
+        weight      = ""
+      }
+      be2 = {
+        enabled     = ""
+        address     = ""
+        host_header = ""
+        http_port   = ""
+        https_port  = ""
+        priority    = ""
+        weight      = ""
+      }
+    }
+  },
+  bp2 = {
+    name                = ""
+    load_balancing_name = ""
+    health_probe_name   = ""
+    backends = {
+      be1 = {
+        enabled     = ""
+        address     = ""
+        host_header = ""
+        http_port   = ""
+        https_port  = ""
+        priority    = ""
+        weight      = ""
+      }
+      be2 = {
+        enabled     = ""
+        address     = ""
+        host_header = ""
+        http_port   = ""
+        https_port  = ""
+        priority    = ""
+        weight      = ""
+      }
+    }
+  }
+}
+
+frontend_endpoints = {
+  fep1 = {
+    name                              = ""
+    host_name                         = ""
+    session_affinity_enabled          = ""
+    session_affinity_ttl_seconds      = ""
+    custom_https_provisioning_enabled = ""
+    custom_https_configuration = {
+      certificate_source = ""
+    }
+    web_application_firewall_policy_link_name = ""
+  },
+  fep2 = {
+    name                              = ""
+    host_name                         = ""
+    session_affinity_enabled          = ""
+    session_affinity_ttl_seconds      = ""
+    custom_https_provisioning_enabled = ""
+    custom_https_configuration = {
+      certificate_source = ""
+    }
+    web_application_firewall_policy_link_name = ""
+  }
+}
+
+frontdoor_wafs = {
+  waf1 = {
+    name         = ""
+    tags         = ""
+    enabled      = ""
+    mode         = ""
+    redirect_url = ""
+  },
+  waf2 = {
+    name         = ""
+    tags         = ""
+    enabled      = ""
+    mode         = ""
+    redirect_url = ""
+  }
+}
+
+custom_rules = {
+  cr1 = {
+    waf      = ""
+    name     = ""
+    action   = ""
+    enabled  = ""
+    priority = ""
+    type     = ""
+    match_condition = {
+      match_variable     = ""
+      match_values       = []
+      operator           = ""
+      selector           = ""
+      negation_condition = ""
+      transforms         = []
+    }
+    rate_limit_duration_in_minutes = ""
+    rate_limit_threshold           = ""
+  },
+  cr2 = {
+    waf      = ""
+    name     = ""
+    action   = ""
+    enabled  = ""
+    priority = ""
+    type     = ""
+    match_condition = {
+      match_variable     = ""
+      match_values       = []
+      operator           = ""
+      selector           = ""
+      negation_condition = ""
+      transforms         = []
+    }
+    rate_limit_duration_in_minutes = ""
+    rate_limit_threshold           = ""
+  },
+  cr3 = {
+    waf      = ""
+    name     = ""
+    action   = ""
+    enabled  = ""
+    priority = ""
+    type     = ""
+    match_condition = {
+      match_variable     = ""
+      match_values       = []
+      operator           = ""
+      selector           = ""
+      negation_condition = ""
+      transforms         = []
+    }
+    rate_limit_duration_in_minutes = ""
+    rate_limit_threshold           = ""
+  },
+  cr4 = {
+    waf      = ""
+    name     = ""
+    action   = ""
+    enabled  = ""
+    priority = ""
+    type     = ""
+    match_condition = {
+      match_variable     = ""
+      match_values       = []
+      operator           = ""
+      selector           = ""
+      negation_condition = ""
+      transforms         = []
+    }
+    rate_limit_duration_in_minutes = ""
+    rate_limit_threshold           = ""
+  }
+}
+
+managed_rules = {
+  mr1 = {
+    waf     = ""
+    type    = ""
+    version = ""
+    exclusions = {
+      ex1 = {
+        match_variable = ""
+        operator       = ""
+        selector       = ""
+      }
+    }
+    overrides = {
+      or1 = {
+        rule_group_name = ""
+        exclusions = {
+          ex1 = {
+            match_variable = ""
+            operator       = ""
+            selector       = ""
+          }
+        }
+        rules = {
+          r1 = {
+            rule_id = ""
+            action  = ""
+            enabled = ""
+            exclusions = {
+              ex1 = {
+                match_variable = ""
+                operator       = ""
+                selector       = ""
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  mr2 = {
+    waf     = ""
+    type    = ""
+    version = ""
+    exclusions = {
+      ex1 = {
+        match_variable = ""
+        operator       = ""
+        selector       = ""
+      }
+    }
+    overrides = {
+      or1 = {
+        rule_group_name = ""
+        exclusions = {
+          ex1 = {
+            match_variable = ""
+            operator       = ""
+            selector       = ""
+          }
+        }
+        rules = {
+          r1 = {
+            rule_id = ""
+            action  = ""
+            enabled = ""
+            exclusions = {
+              ex1 = {
+                match_variable = ""
+                operator       = ""
+                selector       = ""
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+.terraform
+terraform.tfstate
+*.tfstate*
+terraform.tfvars
+*.backup
+.DS_Store
+plan.out
+.envrc

@@ -1,0 +1,16 @@
+variable "resource_group_name" {}
+variable "frontdoor_name" {}
+variable "load_balancer_enabled" {}
+variable "frontdoor_friendly_name" {}
+variable "enforce_backend_pools_certificate_name_check" {}
+variable "routing_rules" {}
+variable "forwarding_configurations" {}
+variable "redirect_configurations" {}
+variable "backend_pool_load_balancing_configurations" {}
+variable "backend_pool_health_probe_configurations" {}
+variable "backend_pools" {}
+variable "frontend_endpoints" {}
+variable "frontdoor_wafs" {}
+variable "custom_rules" {}
+variable "managed_rules" {}
+variable "tags" {}

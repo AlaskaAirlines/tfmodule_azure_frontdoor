@@ -1,0 +1,181 @@
+tags = {
+  ApplicationName = ""
+  Contact         = ""
+  Environment     = ""
+  InUse           = ""
+  ProductName     = ""
+  Team            = ""
+}
+
+resource_group_name = ""
+
+frontdoor_wafs = {
+  waf1 = {
+    name         = ""
+    tags         = ""
+    enabled      = ""
+    mode         = ""
+    redirect_url = ""
+  },
+  waf2 = {
+    name         = ""
+    tags         = ""
+    enabled      = ""
+    mode         = ""
+    redirect_url = ""
+  }
+}
+
+custom_rules = {
+  cr1 = {
+    waf      = ""
+    name     = ""
+    action   = ""
+    enabled  = ""
+    priority = ""
+    type     = ""
+    match_condition = {
+      match_variable     = ""
+      match_values       = []
+      operator           = ""
+      selector           = ""
+      negation_condition = ""
+      transforms         = []
+    }
+    rate_limit_duration_in_minutes = ""
+    rate_limit_threshold           = ""
+  },
+  cr2 = {
+    waf      = ""
+    name     = ""
+    action   = ""
+    enabled  = ""
+    priority = ""
+    type     = ""
+    match_condition = {
+      match_variable     = ""
+      match_values       = []
+      operator           = ""
+      selector           = ""
+      negation_condition = ""
+      transforms         = []
+    }
+    rate_limit_duration_in_minutes = ""
+    rate_limit_threshold           = ""
+  },
+  cr3 = {
+    waf      = ""
+    name     = ""
+    action   = ""
+    enabled  = ""
+    priority = ""
+    type     = ""
+    match_condition = {
+      match_variable     = ""
+      match_values       = []
+      operator           = ""
+      selector           = ""
+      negation_condition = ""
+      transforms         = []
+    }
+    rate_limit_duration_in_minutes = ""
+    rate_limit_threshold           = ""
+  },
+  cr4 = {
+    waf      = ""
+    name     = ""
+    action   = ""
+    enabled  = ""
+    priority = ""
+    type     = ""
+    match_condition = {
+      match_variable     = ""
+      match_values       = []
+      operator           = ""
+      selector           = ""
+      negation_condition = ""
+      transforms         = []
+    }
+    rate_limit_duration_in_minutes = ""
+    rate_limit_threshold           = ""
+  }
+}
+
+managed_rules = {
+  mr1 = {
+    waf     = ""
+    type    = ""
+    version = ""
+    exclusions = {
+      ex1 = {
+        match_variable = ""
+        operator       = ""
+        selector       = ""
+      }
+    }
+    overrides = {
+      or1 = {
+        rule_group_name = ""
+        exclusions = {
+          ex1 = {
+            match_variable = ""
+            operator       = ""
+            selector       = ""
+          }
+        }
+        rules = {
+          r1 = {
+            rule_id = ""
+            action  = ""
+            enabled = ""
+            exclusions = {
+              ex1 = {
+                match_variable = ""
+                operator       = ""
+                selector       = ""
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  mr2 = {
+    waf     = ""
+    type    = ""
+    version = ""
+    exclusions = {
+      ex1 = {
+        match_variable = ""
+        operator       = ""
+        selector       = ""
+      }
+    }
+    overrides = {
+      or1 = {
+        rule_group_name = ""
+        exclusions = {
+          ex1 = {
+            match_variable = ""
+            operator       = ""
+            selector       = ""
+          }
+        }
+        rules = {
+          r1 = {
+            rule_id = ""
+            action  = ""
+            enabled = ""
+            exclusions = {
+              ex1 = {
+                match_variable = ""
+                operator       = ""
+                selector       = ""
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
