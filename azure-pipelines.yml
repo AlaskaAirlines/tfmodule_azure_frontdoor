@@ -8,7 +8,7 @@ variables:
 - group: 'Terraform Module Variables'
 
 jobs:
-- job: 
+- job:
   displayName: Build, Test and Deploy
   timeoutInMinutes: 130
   steps:
@@ -28,14 +28,14 @@ jobs:
     displayName: 'Go test'
     inputs:
       command: 'test'
-      arguments: './test -timeout 2h'
+      arguments: './test -timeout 2h -v'
     env:
       ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
       AZURE_CLIENT_ID: $(ARM_CLIENT_ID)
       AZURE_TENANT_ID: $(ARM_TENANT_ID)
       AZURE_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)
       AZURE_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
-  
+
   - task: Npm@1
     displayName: 'Npm Install'
     inputs:
