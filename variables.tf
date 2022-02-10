@@ -55,10 +55,13 @@ variable "forwarding_configurations" {
 
 variable "redirect_configurations" {
   type = map(object({
-    routing_rule_name = string
-    custom_host       = string
-    redirect_protocol = string
-    redirect_type     = string
+    routing_rule_name   = string
+    custom_host         = string
+    redirect_protocol   = string
+    redirect_type       = string
+    custom_fragment     = string
+    custom_path         = string
+    custom_query_string = string
   }))
 
   description = "The redirect configuration for your routing_rules"
