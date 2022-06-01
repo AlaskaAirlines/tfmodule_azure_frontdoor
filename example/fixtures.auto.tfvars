@@ -140,7 +140,7 @@ frontend_endpoints = {
   },
   fep2 = {
     name                              = "secondFrontendEndpoint"
-    host_name                         = "tfvalfrontdoor.ecomm-test-aks.alaskaair.com"
+    host_name                         = "tfvalfrontdoor.tfval.ecomm-test-aks.alaskaair.com"
     session_affinity_enabled          = false
     session_affinity_ttl_seconds      = 0
     custom_https_provisioning_enabled = true
