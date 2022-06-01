@@ -8,12 +8,9 @@ install: brew
 	pre-commit uninstall
 	pre-commit install -f
 	tfenv install
-	go get -u golang.org/x/lint/golint
 
 test:
-	go get -u golang.org/x/lint/golint
-	go get -u github.com/gruntwork-io/terratest/modules/terraform
-	go get -u github.com/stretchr/testify/assert
-	go test -v ./test/example_test.go	
+	cd test && go mod download
+	cd test && go test -v -timeout 2h
 
 .PHONY: brew install test

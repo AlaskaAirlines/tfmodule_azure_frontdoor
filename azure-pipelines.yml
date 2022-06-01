@@ -1,50 +1,59 @@
 trigger:
-- master
+  branches:
+    include:
+      - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: ubuntu-latest
 
 variables:
-- group: 'Terraform Module Variables'
+  - group: Terraform Module Variables
 
 jobs:
-- job:
-  displayName: Build, Test and Deploy
-  timeoutInMinutes: 130
-  steps:
-  - task: Go@0
-    displayName: 'Go get golint'
-    inputs:
-      command: 'get'
-      arguments: '-u golang.org/x/lint/golint'
+  - job:
+    displayName: Build, Test and Deploy
+    timeoutInMinutes: 130
+    steps:
+      - task: TerraformInstaller@0
+        displayName: Install Terraform 1.2.1
+        inputs:
+          terraformVersion: 1.2.1
 
-  - task: Go@0
-    displayName: 'Go get test dependencies'
-    inputs:
-      command: 'get'
-      arguments: '-t ./...'
+      - task: GoTool@0
+        displayName: Install Go 1.18.2
+        inputs:
+          version: 1.18.2
 
-  - task: Go@0
-    displayName: 'Go test'
-    inputs:
-      command: 'test'
-      arguments: './test -timeout 2h -v'
-    env:
-      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
-      AZURE_CLIENT_ID: $(ARM_CLIENT_ID)
-      AZURE_TENANT_ID: $(ARM_TENANT_ID)
-      AZURE_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)
-      AZURE_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      - task: Go@0
+        displayName: Download Go modules
+        inputs:
+          command: custom
+          customCommand: mod
+          arguments: download
+          workingDirectory: $(System.DefaultWorkingDirectory)/test
 
-  - task: Npm@1
-    displayName: 'Npm Install'
-    inputs:
-      command: 'install'
+      - task: Go@0
+        displayName: Run Terratest
+        inputs:
+          command: test
+          arguments: -timeout 2h -v
+          workingDirectory: $(System.DefaultWorkingDirectory)/test
+        env:
+          ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+          AZURE_CLIENT_ID: $(ARM_CLIENT_ID)
+          AZURE_TENANT_ID: $(ARM_TENANT_ID)
+          AZURE_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)
+          AZURE_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
 
-  - task: Bash@3
-    displayName: 'Release via semantic-release'
-    inputs:
-      targetType: 'inline'
-      script: 'npx semantic-release'
-    env:
-      GH_TOKEN: $(BOT_GH_TOKEN)
+      - task: Npm@1
+        displayName: Npm Install
+        inputs:
+          command: install
+
+      - task: Bash@3
+        displayName: Release via semantic-release
+        inputs:
+          targetType: inline
+          script: npx semantic-release
+        env:
+          GH_TOKEN: $(BOT_GH_TOKEN)
