@@ -30,9 +30,9 @@ type FrontdoorValidationArgs struct {
 }
 
 func TestAzureFrontDoor(t *testing.T) {
-	terraformOptions := &terraform.Options{
-		TerraformDir: "../example/.",
-	}
+	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
+		TerraformDir: "../example",
+	})
 
 	expectedFrontdoorArgs := FrontdoorValidationArgs{
 		frontdoorName: "tfvalfrontdoor",
@@ -48,25 +48,25 @@ func TestAzureFrontDoor(t *testing.T) {
 }
 
 func validateFrontdoor(t *testing.T, terraformOptions *terraform.Options, args *FrontdoorValidationArgs) {
-	assert := assert.New(t)
+	assertions := assert.New(t)
 
 	id := terraform.Output(t, terraformOptions, "id")
-	assert.NotNil(id)
+	assertions.NotNil(id)
 
 	fd := getFrontdoor(t, args.frontdoorName)
-	assert.NotNil(fd)
+	assertions.NotNil(fd)
 }
 
 func validateFrontdoorEndpoint(t *testing.T, terraformOptions *terraform.Options, args *FrontdoorValidationArgs) {
-	assert := assert.New(t)
+	assertions := assert.New(t)
 
 	frontendEndpointMap := terraform.OutputMap(t, terraformOptions, "frontend_endpoint_map")
 
 	for key := range frontendEndpointMap {
 		fep := getFrontendEndpoint(t, args.frontdoorName, key)
-		assert.NotNil(fep)
+		assertions.NotNil(fep)
 
-		// Build URL for Frontend Entpoint testing
+		// Build URL for Frontend Endpoint testing
 		url := "https://" + *fep.HostName + "/switchhosts/test.txt"
 
 		// Setup a TLS configuration to submit with the helper, a blank struct is acceptable
@@ -124,14 +124,14 @@ func getFrontdoorClient() (*frontdoor.FrontDoorsClient, error) {
 	return &client, nil
 }
 
-func getFrontendEndpoint(t *testing.T, frontdoorName string, frontendEndpointName string) *frontdoor.FrontendEndpoint {
+func getFrontendEndpoint(t *testing.T, frontdoorName, frontendEndpointName string) *frontdoor.FrontendEndpoint {
 	frontendEndpoint, err := getFrontendEndpointE(frontdoorName, frontendEndpointName)
 	require.NoError(t, err)
 
 	return frontendEndpoint
 }
 
-func getFrontendEndpointE(frontdoorName string, frontendEndpointName string) (*frontdoor.FrontendEndpoint, error) {
+func getFrontendEndpointE(frontdoorName, frontendEndpointName string) (*frontdoor.FrontendEndpoint, error) {
 	client, err := getFrontendEndpointsClient()
 	if err != nil {
 		return nil, err
